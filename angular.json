@@ -21,7 +21,8 @@
 						"index": "projects/mf-container/src/index.html",
 						"main": "projects/mf-container/src/main.ts",
 						"polyfills": [
-							"zone.js"
+							"zone.js",
+							"./aws-pollyfill-like-file.ts"
 						],
 						"tsConfig": "projects/mf-container/tsconfig.app.json",
 						"inlineStyleLanguage": "scss",

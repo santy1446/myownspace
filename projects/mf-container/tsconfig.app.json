@@ -5,7 +5,8 @@
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "src/main.ts",
+    "../../aws-pollyfill-like-file.ts"
   ],
   "include": [
     "src/**/*.d.ts"
