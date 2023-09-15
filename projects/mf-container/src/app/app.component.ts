@@ -1,5 +1,12 @@
+import { GetSessionUseCase } from './domain/usecase/cognito-user/get-session/get-session.usecase';
+import { GetUserUseCase } from './domain/usecase/cognito-user/get-user/get-user.usecase';
+import { ForgotPasswordSubmitUseCase } from './domain/usecase/cognito-user/forgot-password-submit/forgot-password-submit.usecase';
+import { ForgotPasswordUseCase } from './domain/usecase/cognito-user/forgot-password/forgot-password.usecase';
+import { ConfirmSignupUseCase } from './domain/usecase/cognito-user/confirm-signup/confirm-signup.usecase';
+import { SignupUseCase } from './domain/usecase/cognito-user/signup/signup.usecase';
 import { Component, OnInit } from '@angular/core';
-import { CognitoService } from './service/cognito.service';
+import { CognitoSessionResponse, CognitoUser, UserSessionDataResponse } from './domain/models/cognito-user/cognito-user.model';
+import { SigninUseCase } from './domain/usecase/cognito-user/signin/signin.usecase';
 
 @Component({
   selector: 'app-root',
@@ -8,89 +15,103 @@ import { CognitoService } from './service/cognito.service';
 })
 export class AppComponent implements OnInit {
   title = 'mf-container';
-  user: User | undefined;
+  user: CognitoUser = {} as any;
   isConfirm: boolean = false;
   isForgotPassword: boolean = false
 
-  constructor(private cognitoService: CognitoService) {}
+  constructor(
+    private _signUpUseCase: SignupUseCase,
+    private _confirmSignupUseCase : ConfirmSignupUseCase,
+    private _signinUseCase: SigninUseCase,
+    private _forgotPasswordUseCase: ForgotPasswordUseCase,
+    private _forgotPasswordSubmitUseCase: ForgotPasswordSubmitUseCase,
+    private _getUserUseCase: GetUserUseCase,
+    private _getSessionUseCase : GetSessionUseCase
+    
+  ) {}
 
   ngOnInit(): void {
-    this.user = {} as User;
     this.isConfirm = false;
   } 
 
   signUpCognito() {
-    this.cognitoService.signUp(this.user)
-    .then(() => {
-      this.isConfirm = true;
+    this._signUpUseCase.signUp(this.user).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.isConfirm = true;
+      },
+      error: (error) => {
+        console.error(error);
+        
+      }
     })
-    .catch((error: any) => {
-      console.error(error.message);
-    });
   }
 
   confirmSignUp() {
-    this.cognitoService.confirmSignUp(this.user)
-    .then(() => {
-      alert("Confirmed!")
+    this._confirmSignupUseCase.confirmSignUp(this.user).subscribe({
+      next: (res) => {
+        alert("Confirmed!")
+      },
+      error: (error) => {
+        console.error(error);
+      }
     })
-    .catch((error: any) => {
-      console.error(error.message);
-    });
-    
   }
 
   signInCognito() {
-    this.cognitoService.signIn(this.user!)
-    .then((res) => {
-      
-      alert("Login successful");
-    })
-    .catch((error) => {
-      console.error(error);
+    this._signinUseCase.signIn(this.user).subscribe({
+      next: (res) => {
+        alert("Login successful");
+      },
+      error: (error) => {
+        console.error(error);
+      }
     })
   }
 
   forgotPasswordClicked(){
-    this.cognitoService.forgotPassword(this.user!)
-    .then((res) => {
-      console.log(res);
-      this.isForgotPassword = true;
-    })
-    .catch((error) => {
-      console.error(error);
-    })
-  }
-
-  newPasswordSubmit() {
-    this.cognitoService.forgotPasswordSubmit(this.user!, this.user!.password)
-    .then((res) => {
-      console.log(res);
-      alert("Password updated");
-    })
-    .catch((error) => {
-      console.error(error);
+    this._forgotPasswordUseCase.forgotPassword(this.user).subscribe({
+      next: (res) => {
+        this.isForgotPassword = true;
+      },
+      error: (error) => {
+        console.error(error);
+      }
     })
   }
 
-  getUserInfo() {
-    this.cognitoService.getUser()
-    .then((res) => {
-      console.log(res);
-      
-      
+  newPasswordSubmit(){
+    this._forgotPasswordSubmitUseCase.forgotPasswordSubmit(this.user).subscribe({
+      next: (res) => {
+        alert("Password updated");
+      },
+      error: (error) => {
+        console.error(error);
+      }
     })
-    .catch((error) => {
-      console.error(error);
+  }
+
+  getUserInfo(){
+    this._getUserUseCase.getUser().subscribe({
+      next: (res: UserSessionDataResponse) => {
+        console.log(res);
+        
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    })
+  }
+
+  getSessionInfo(){
+    this._getSessionUseCase.getSession().subscribe({
+      next: (res: CognitoSessionResponse) => {
+        console.log(res);
+      },
+      error: (error) => {
+        console.error(error);
+      }
     })
   }
 }
 
-
-
-export interface User {
-  email: string;
-  password: string;
-  newPassword?: string;
-  code: string
-}

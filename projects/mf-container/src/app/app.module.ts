@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { CognitoService } from './service/cognito.service';
+import { CognitoUserGateway } from './domain/models/cognito-user/gateway/cognito-user.gateway';
+import { CognitoUserService } from './infraestructure/driven-adapter/cognito-user/cognito-user.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { CognitoService } from './service/cognito.service';
     FormsModule
   ],
   providers: [
-    CognitoService
+    {provide: CognitoUserGateway, useClass: CognitoUserService}
   ],
   bootstrap: [AppComponent]
 })

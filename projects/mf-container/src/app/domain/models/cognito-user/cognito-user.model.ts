@@ -5,20 +5,6 @@ export interface CognitoUser {
     code?: string
 }
 
-/** Register cognito response */
-
-export interface RegisterCognitoResponse {
-    CodeDeliveryDetails: CodeDeliveryDetails;
-    UserConfirmed:       boolean;
-    UserSub:             string;
-}
-
-export interface CodeDeliveryDetails {
-    AttributeName:  string;
-    DeliveryMedium: string;
-    Destination:    string;
-}
-
 /** Cognito session response */
 
 export interface CognitoSessionResponse {
@@ -78,6 +64,7 @@ export interface RefreshToken {
 export interface UserSessionDataResponse {
     username:   string;
     attributes: Attributes;
+    id?: string;
 }
 
 export interface Attributes {
