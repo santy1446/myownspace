@@ -8,7 +8,7 @@ import { CognitoService } from './service/cognito.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

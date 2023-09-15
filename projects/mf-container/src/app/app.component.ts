@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   } 
 
   signUpCognito() {
-    debugger
     this.cognitoService.signUp(this.user)
     .then(() => {
       this.isConfirm = true;
@@ -43,7 +42,8 @@ export class AppComponent implements OnInit {
 
   signInCognito() {
     this.cognitoService.signIn(this.user!)
-    .then(() => {
+    .then((res) => {
+      
       alert("Login successful");
     })
     .catch((error) => {
@@ -53,7 +53,8 @@ export class AppComponent implements OnInit {
 
   forgotPasswordClicked(){
     this.cognitoService.forgotPassword(this.user!)
-    .then(() => {
+    .then((res) => {
+      console.log(res);
       this.isForgotPassword = true;
     })
     .catch((error) => {
@@ -63,7 +64,8 @@ export class AppComponent implements OnInit {
 
   newPasswordSubmit() {
     this.cognitoService.forgotPasswordSubmit(this.user!, this.user!.password)
-    .then(() => {
+    .then((res) => {
+      console.log(res);
       alert("Password updated");
     })
     .catch((error) => {
@@ -72,10 +74,10 @@ export class AppComponent implements OnInit {
   }
 
   getUserInfo() {
-    this.cognitoService.getSession()
+    this.cognitoService.getUser()
     .then((res) => {
-      console.log("AccessToken", res.getAccessToken());
-      console.log("JWT", res.getJwtToken());
+      console.log(res);
+      
       
     })
     .catch((error) => {
@@ -89,5 +91,6 @@ export class AppComponent implements OnInit {
 export interface User {
   email: string;
   password: string;
+  newPassword?: string;
   code: string
 }
