@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CognitoUserGateway } from './domain/models/cognito-user/gateway/cognito-user.gateway';
 import { CognitoUserService } from './infraestructure/driven-adapter/cognito-user/cognito-user.service';
+import { PagesModule } from './ui/pages/pages.module';
+import { UiFooterModule, UiHeaderModule } from 'mos-design-system';
+import { ComponentsModule } from './ui/components/components.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +17,14 @@ import { CognitoUserService } from './infraestructure/driven-adapter/cognito-use
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    PagesModule,
+    UiHeaderModule,
+    UiFooterModule,
+    ComponentsModule,
   ],
   providers: [
-    {provide: CognitoUserGateway, useClass: CognitoUserService}
+    { provide: CognitoUserGateway, useClass: CognitoUserService }
   ],
   bootstrap: [AppComponent]
 })

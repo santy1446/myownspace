@@ -2,7 +2,7 @@ export interface CognitoUser {
     email: string;
     password: string;
     newPassword?: string;
-    code?: string
+    code?: number
 }
 
 /** Cognito session response */

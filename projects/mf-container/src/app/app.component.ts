@@ -7,6 +7,7 @@ import { SignupUseCase } from './domain/usecase/cognito-user/signup/signup.useca
 import { Component, OnInit } from '@angular/core';
 import { CognitoSessionResponse, CognitoUser, UserSessionDataResponse } from './domain/models/cognito-user/cognito-user.model';
 import { SigninUseCase } from './domain/usecase/cognito-user/signin/signin.usecase';
+import { NavigationStart, Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,59 +18,99 @@ export class AppComponent implements OnInit {
   title = 'mf-container';
   user: CognitoUser = {} as any;
   isConfirm: boolean = false;
-  isForgotPassword: boolean = false
+  isForgotPassword: boolean = false;
+  areHeaderAndFooterVisible: boolean = false;
+
+  links = [
+    {
+      name: "Option 1",
+      route: "route/1",
+      type: "link"
+    },
+    {
+      name: "Option 2",
+      route: "route/2",
+      type: "link"
+    }
+  ]
+
+  generalLinks = [
+    {
+      categoryName: "Services",
+      categoryLinks: [
+        {
+          name: "ToDo",
+          route: "route",
+          type: "link"
+        },
+        {
+          name: "Notes",
+          route: "route",
+          type: "link"
+        }
+      ]
+    },
+    {
+      categoryName: "About",
+      categoryLinks: [
+        {
+          name: "This project",
+          route: "route",
+          type: "link"
+        },
+        {
+          name: "Me",
+          route: "route",
+          type: "link"
+        }
+      ]
+    }
+  ]
+
+  iconsInfo = {
+    title: "Contact me",
+    buttons: [
+      {
+        name: "LinkedIn",
+        icon: "fab fa-linkedin-in",
+        type: "link"
+      }
+    ]
+  }
 
   constructor(
-    private _signUpUseCase: SignupUseCase,
-    private _confirmSignupUseCase : ConfirmSignupUseCase,
-    private _signinUseCase: SigninUseCase,
     private _forgotPasswordUseCase: ForgotPasswordUseCase,
     private _forgotPasswordSubmitUseCase: ForgotPasswordSubmitUseCase,
     private _getUserUseCase: GetUserUseCase,
-    private _getSessionUseCase : GetSessionUseCase
-    
-  ) {}
+    private _getSessionUseCase: GetSessionUseCase,
+    private _router: Router
+  ) {
+    _router.events.subscribe((elm) => {
+      if (elm instanceof NavigationStart) {
+        this.areHeaderAndFooterVisible = elm.url !== '/login'
+        console.log(elm);
+      }
+    })
+
+  }
 
   ngOnInit(): void {
-    this.isConfirm = false;
-  } 
-
-  signUpCognito() {
-    this._signUpUseCase.signUp(this.user).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.isConfirm = true;
-      },
-      error: (error) => {
-        console.error(error);
-        
-      }
-    })
   }
 
-  confirmSignUp() {
-    this._confirmSignupUseCase.confirmSignUp(this.user).subscribe({
-      next: (res) => {
-        alert("Confirmed!")
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
+  getLinkSelected(event: any) {
+    console.log(event);
   }
 
-  signInCognito() {
-    this._signinUseCase.signIn(this.user).subscribe({
-      next: (res) => {
-        alert("Login successful");
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
+  getIconSelected(event: any) {
+    console.log(event);
   }
 
-  forgotPasswordClicked(){
+
+  showElementHeaderSelected(event: any) {
+    console.log(event);
+  }
+
+  forgotPasswordClicked() {
     this._forgotPasswordUseCase.forgotPassword(this.user).subscribe({
       next: (res) => {
         this.isForgotPassword = true;
@@ -80,7 +121,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  newPasswordSubmit(){
+  newPasswordSubmit() {
     this._forgotPasswordSubmitUseCase.forgotPasswordSubmit(this.user).subscribe({
       next: (res) => {
         alert("Password updated");
@@ -91,11 +132,11 @@ export class AppComponent implements OnInit {
     })
   }
 
-  getUserInfo(){
+  getUserInfo() {
     this._getUserUseCase.getUser().subscribe({
       next: (res: UserSessionDataResponse) => {
         console.log(res);
-        
+
       },
       error: (error) => {
         console.error(error);
@@ -103,7 +144,7 @@ export class AppComponent implements OnInit {
     })
   }
 
-  getSessionInfo(){
+  getSessionInfo() {
     this._getSessionUseCase.getSession().subscribe({
       next: (res: CognitoSessionResponse) => {
         console.log(res);
