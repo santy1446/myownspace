@@ -23,12 +23,12 @@ export class AppComponent implements OnInit {
 
   links = [
     {
-      name: "Option 1",
-      route: "route/1",
+      name: "Notes",
+      route: "notes",
       type: "link"
     },
     {
-      name: "Option 2",
+      name: "LogOut",
       route: "route/2",
       type: "link"
     }
@@ -88,7 +88,6 @@ export class AppComponent implements OnInit {
     _router.events.subscribe((elm) => {
       if (elm instanceof NavigationStart) {
         this.areHeaderAndFooterVisible = elm.url !== '/login'
-        console.log(elm);
       }
     })
 
@@ -98,7 +97,7 @@ export class AppComponent implements OnInit {
   }
 
   getLinkSelected(event: any) {
-    console.log(event);
+
   }
 
   getIconSelected(event: any) {
@@ -106,8 +105,10 @@ export class AppComponent implements OnInit {
   }
 
 
-  showElementHeaderSelected(event: any) {
-    console.log(event);
+  clickHeaderElementSelected(event: any) {
+    if (event.type === "link") {
+      this._router.navigate([event.route]);
+    }
   }
 
   forgotPasswordClicked() {

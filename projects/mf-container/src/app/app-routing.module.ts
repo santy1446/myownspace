@@ -20,6 +20,14 @@ const routes: Routes = [
     path: '',
     redirectTo: 'login',
     pathMatch: "full"
+  },
+
+  /** MicroFrontends */
+
+  {
+    path: 'notes',
+    loadChildren: () => 
+    import('mf-notes/PagesModule').then((m) => m.PagesModule)
   }
 ];
 
