@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { NotesComponent } from './notes/notes.component';
+import { UiAnimatedContainerModule, UiNoteModule } from 'mos-design-system';
 
 
 @NgModule({
@@ -11,7 +12,10 @@ import { NotesComponent } from './notes/notes.component';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    UiAnimatedContainerModule,
+    UiNoteModule
+
   ]
 })
 export class PagesModule { }
