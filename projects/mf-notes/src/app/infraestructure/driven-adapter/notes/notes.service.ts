@@ -25,6 +25,4 @@ export class NotesService extends NotesGateway {
   deleteNote(id: string, email: string): Observable<any> {
     return this._http.delete(`${environment.notesEndpoint}/${email}/${id}`)
   }
-
-  
 }

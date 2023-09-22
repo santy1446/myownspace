@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PagesRoutingModule } from './pages-routing.module';
 import { NotesComponent } from './notes/notes.component';
-import { UiAnimatedContainerModule, UiNoteModule } from 'mos-design-system';
 
+/** MOS */
+import { 
+  UiAnimatedContainerModule,
+  UiLoaderModule,
+  UiNoteModule 
+} from 'mos-design-system';
+import { HttpClientModule } from '@angular/common/http';
+import { DEFAULT_CONFIGURATION, DEFAULT_PROVIDERS, FULL_PROVIDERS } from './../../app.configuration';
 
 @NgModule({
   declarations: [
@@ -14,8 +20,30 @@ import { UiAnimatedContainerModule, UiNoteModule } from 'mos-design-system';
     CommonModule,
     PagesRoutingModule,
     UiAnimatedContainerModule,
-    UiNoteModule
-
-  ]
+    UiNoteModule,
+    UiLoaderModule,
+    HttpClientModule
+  ],
+  providers: [...FULL_PROVIDERS]
 })
-export class PagesModule { }
+export class PagesModule {
+  static(configuration: any) {
+    let conf = DEFAULT_CONFIGURATION;
+    if (configuration) {
+      conf = {
+        ...DEFAULT_CONFIGURATION,
+        infrastructures: configuration.infrastructures || conf.infrastructures
+      }
+    }
+
+    return {
+      ngModule: PagesModule,
+      providers: [
+        ...DEFAULT_PROVIDERS,
+        ...conf.infrastructures.map((x) => {
+          return { provide: x.gateway, useClass: x.implementation };
+        }),
+      ],
+    };
+  }
+}
