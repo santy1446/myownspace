@@ -1,13 +1,8 @@
-import { GetSessionUseCase } from './domain/usecase/cognito-user/get-session/get-session.usecase';
-import { GetUserUseCase } from './domain/usecase/cognito-user/get-user/get-user.usecase';
 import { ForgotPasswordSubmitUseCase } from './domain/usecase/cognito-user/forgot-password-submit/forgot-password-submit.usecase';
 import { ForgotPasswordUseCase } from './domain/usecase/cognito-user/forgot-password/forgot-password.usecase';
-import { ConfirmSignupUseCase } from './domain/usecase/cognito-user/confirm-signup/confirm-signup.usecase';
-import { SignupUseCase } from './domain/usecase/cognito-user/signup/signup.usecase';
 import { Component, OnInit } from '@angular/core';
-import { CognitoSessionResponse, CognitoUser, UserSessionDataResponse } from './domain/models/cognito-user/cognito-user.model';
-import { SigninUseCase } from './domain/usecase/cognito-user/signin/signin.usecase';
-import { NavigationStart, Router, RouterEvent } from '@angular/router';
+import { CognitoUser } from './domain/models/cognito-user/cognito-user.model';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -81,8 +76,6 @@ export class AppComponent implements OnInit {
   constructor(
     private _forgotPasswordUseCase: ForgotPasswordUseCase,
     private _forgotPasswordSubmitUseCase: ForgotPasswordSubmitUseCase,
-    private _getUserUseCase: GetUserUseCase,
-    private _getSessionUseCase: GetSessionUseCase,
     private _router: Router
   ) {
     _router.events.subscribe((elm) => {
@@ -126,29 +119,6 @@ export class AppComponent implements OnInit {
     this._forgotPasswordSubmitUseCase.forgotPasswordSubmit(this.user).subscribe({
       next: (res) => {
         alert("Password updated");
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
-
-  getUserInfo() {
-    this._getUserUseCase.getUser().subscribe({
-      next: (res: UserSessionDataResponse) => {
-        console.log(res);
-
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
-
-  getSessionInfo() {
-    this._getSessionUseCase.getSession().subscribe({
-      next: (res: CognitoSessionResponse) => {
-        console.log(res);
       },
       error: (error) => {
         console.error(error);

@@ -33,15 +33,6 @@ export class CognitoUserService extends CognitoUserGateway {
     ));
     return OBSERVABLE;
   }
-
-  getUser(): Observable<any> {
-    const OBSERVABLE = from(Auth.currentUserInfo());
-    return OBSERVABLE;
-  }
-  getSession(): Observable<any> {
-    const OBSERVABLE = from(Auth.currentSession());
-    return OBSERVABLE;
-  }
   signIn(user: CognitoUser): Observable<any> {
     const OBSERVABLE = from(Auth.signIn(
       user.email, user.password

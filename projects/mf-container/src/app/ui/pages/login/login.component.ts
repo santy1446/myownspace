@@ -7,12 +7,11 @@ import {
   UiToastComponent
 } from 'mos-design-system';
 import { SignupUseCase } from '../../../domain/usecase/cognito-user/signup/signup.usecase';
-import { CognitoSessionResponse, CognitoUser, UserSessionDataResponse } from '../../../domain/models/cognito-user/cognito-user.model';
+import { CognitoUser } from '../../../domain/models/cognito-user/cognito-user.model';
 import { ConfirmSignupUseCase } from '../../../domain/usecase/cognito-user/confirm-signup/confirm-signup.usecase';
 import { SigninUseCase } from '../../../domain/usecase/cognito-user/signin/signin.usecase';
 import { Router } from '@angular/router';
-import { GetUserUseCase } from '../../../domain/usecase/cognito-user/get-user/get-user.usecase';
-import { GetSessionUseCase } from '../../../domain/usecase/cognito-user/get-session/get-session.usecase';
+
 
 @Component({
   templateUrl: './login.component.html',
@@ -31,8 +30,6 @@ export class LoginComponent {
     private _confirmSignupUseCase: ConfirmSignupUseCase,
     private _signinUseCase: SigninUseCase,
     private _router: Router,
-    private _getUserUseCase: GetUserUseCase,
-    private _getSessionUseCase: GetSessionUseCase
   ) { }
 
   
@@ -122,37 +119,4 @@ export class LoginComponent {
       5000
     );
   }
-
-
-
-
-
-
-
-
-
-
-  getUserInfo() {
-    this._getUserUseCase.getUser().subscribe({
-      next: (res: UserSessionDataResponse) => {
-        console.log(res);
-
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
-
-  getSessionInfo() {
-    this._getSessionUseCase.getSession().subscribe({
-      next: (res: CognitoSessionResponse) => {
-        console.log(res);
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
-
 }

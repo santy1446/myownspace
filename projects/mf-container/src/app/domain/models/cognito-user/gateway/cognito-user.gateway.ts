@@ -1,11 +1,9 @@
 import { Observable } from "rxjs";
-import { CognitoSessionResponse, CognitoUser, UserSessionDataResponse } from "../cognito-user.model";
+import { CognitoUser } from "../cognito-user.model";
 
 export abstract class CognitoUserGateway {
     abstract signUp(user : CognitoUser): Observable<any>;
     abstract confirmSignUp(user : CognitoUser): Observable<any>;
-    abstract getUser(): Observable<UserSessionDataResponse>;
-    abstract getSession(): Observable<CognitoSessionResponse>;
     abstract signIn(user : CognitoUser): Observable<any>;
     abstract signOut(): Observable<any>;
     abstract forgotPassword(user : CognitoUser): Observable<any>;

@@ -17,10 +17,4 @@ export class NotesComponent {
     private _deleteNoteUseCase: DeleteNoteUseCase,
   ) {}
 
-  getNotes() {
-    this._getUserNotesUseCase.getUserNotes('').subscribe({
-      next: () => console.log("")
-      
-    })
-  }
 }
