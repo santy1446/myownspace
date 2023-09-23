@@ -15,14 +15,14 @@ export class NotesService extends NotesGateway {
   createNote(user: NoteService): Observable<NoteService> {
     return this._http.post<any>(environment.notesEndpoint, user);
   }
-  updateNote(user: NoteService): Observable<any> {
-    const params = {title: user.title, body: user.note_body}
-    return this._http.put(`${environment.notesEndpoint}/${user.email_user_login}/${user.id}`, params);
+  updateNote(note: NoteService): Observable<any> {
+    const params = {title: note.title, body: note.note_body}
+    return this._http.put(`${environment.notesEndpoint}/${note.id}`, params);
   }
-  getUserNotes(email: string): Observable<NoteService[]> {
-    return this._http.get<any>(`${environment.notesEndpoint}/${email}`).pipe(map (data=> data));
+  getUserNotes(): Observable<NoteService[]> {
+    return this._http.get<any>(environment.notesEndpoint).pipe(map (data=> data));
   }
-  deleteNote(id: string, email: string): Observable<any> {
-    return this._http.delete(`${environment.notesEndpoint}/${email}/${id}`)
+  deleteNote(id: string): Observable<any> {
+    return this._http.delete(`${environment.notesEndpoint}/${id}`)
   }
 }

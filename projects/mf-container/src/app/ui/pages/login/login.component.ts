@@ -36,6 +36,7 @@ export class LoginComponent {
 
   private prepareUserData(user: any, isLogin: boolean): CognitoUser {
     return {
+      user: isLogin ? user.singInUser : user.singUpUser,
       email: isLogin ? user.singInEmail : user.singUpEmail,
       password: isLogin ? user.singInPassword : user.singUpPassword,
       code: undefined,

@@ -22,7 +22,10 @@ export class CognitoUserService extends CognitoUserGateway {
   signUp(user: CognitoUser): Observable<any> {
     const OBSERVABLE = from(Auth.signUp({
       username: user.email,
-      password: user.password
+      password: user.password,
+      attributes: {
+        nickname: user.user, // optional
+      },
     },));
     return OBSERVABLE;
   }
@@ -35,7 +38,7 @@ export class CognitoUserService extends CognitoUserGateway {
   }
   signIn(user: CognitoUser): Observable<any> {
     const OBSERVABLE = from(Auth.signIn(
-      user.email, user.password
+      user.user!, user.password
     ));
     return OBSERVABLE;
   }

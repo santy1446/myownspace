@@ -4,6 +4,8 @@ import { DeleteNoteUseCase } from "./domain/usecases/delete-note/delete-note.use
 import { GetUserNotesUseCase } from "./domain/usecases/get-user-notes/get-user-notes.usecase";
 import { UpdateNoteUseCase } from "./domain/usecases/update-note/update-note.usecase";
 import { NotesService } from "./infraestructure/driven-adapter/notes/notes.service";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NotesInterceptor } from "./infraestructure/interceptor/notes.interceptor";
 
 
 export const DEFAULT_PROVIDERS = [
@@ -34,4 +36,9 @@ for (const item of DEFAULT_CONFIGURATION.infrastructures) {
 export const FULL_PROVIDERS = [
     ...DEFAULT_PROVIDERS,
     ...infrastructures,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: NotesInterceptor,
+        multi: true,
+    },
 ];

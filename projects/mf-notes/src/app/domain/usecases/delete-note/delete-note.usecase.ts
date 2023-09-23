@@ -9,7 +9,7 @@ export class DeleteNoteUseCase {
 
   constructor(private _notesGateway: NotesGateway) { }
 
-  deleteNote(id: string, email: string): Observable <any> {
-    return this._notesGateway.deleteNote(id, email);
+  deleteNote(id: string): Observable <any> {
+    return this._notesGateway.deleteNote(id);
   } 
 }

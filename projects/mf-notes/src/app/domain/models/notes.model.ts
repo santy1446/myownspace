@@ -1,7 +1,7 @@
 export interface NoteService {
     id?: string;
-    email_user_login: string;
+    user_id?: string;
     title: string;
     note_body: string;
-    createDate?: string;
+    create_date?: string;
 }

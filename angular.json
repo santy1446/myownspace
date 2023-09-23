@@ -80,7 +80,8 @@
 					"options": {
 						"port": 4200,
 						"publicHost": "http://localhost:4200",
-						"extraWebpackConfig": "projects/mf-container/webpack.config.js"
+						"extraWebpackConfig": "projects/mf-container/webpack.config.js",
+						"proxyConfig": "proxy.conf.json"
 					}
 				},
 				"extract-i18n": {
@@ -220,7 +221,8 @@
 					"options": {
 						"port": 4201,
 						"publicHost": "http://localhost:4201",
-						"extraWebpackConfig": "projects/mf-notes/webpack.config.js"
+						"extraWebpackConfig": "projects/mf-notes/webpack.config.js",
+						"proxyConfig": "proxy.conf.json"
 					}
 				},
 				"extract-i18n": {

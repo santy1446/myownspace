@@ -10,8 +10,8 @@ export class GetUserNotesUseCase {
 
   constructor(private _notesGateway: NotesGateway) { }
 
-  getUserNotes(email: string): Observable <NoteService[]> {
-    return this._notesGateway.getUserNotes(email);
+  getUserNotes(): Observable <NoteService[]> {
+    return this._notesGateway.getUserNotes();
   }
 
 }

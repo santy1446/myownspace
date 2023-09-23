@@ -27,7 +27,8 @@ const routes: Routes = [
   {
     path: 'notes',
     loadChildren: () => 
-    import('mf-notes/PagesModule').then((m) => m.PagesModule)
+    import('mf-notes/PagesModule').then((m) => m.PagesModule),
+    canActivate: [AuthGuard]
   }
 ];
 
