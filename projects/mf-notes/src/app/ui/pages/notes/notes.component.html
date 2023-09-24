@@ -1,0 +1,25 @@
+<mos-ui-toast #myToast></mos-ui-toast>
+<mos-ui-loader #myLoader></mos-ui-loader>
+<mos-ui-animated-container>
+    <section content>
+        <h2>My notes</h2>
+        <div class="mos-container-card">
+            <input mosUiInput type="text" placeholder="Search" [(ngModel)]="searchInput">
+            <button mosUiButton class="mos-button-primary" (click)="isCreating = true">Create</button>
+
+        </div>
+        <div class="cards-container">
+            <mos-ui-note *ngIf="isCreating" [isEditing]="true" (saveAction)="onCreateNote($event)"
+                (deleteAction)="isCreating = false"></mos-ui-note>
+            <ng-container *ngFor="let note of notesList | search: searchInput">
+                <mos-ui-note [noteData]="note" (saveAction)="onUpdateNote($event)"
+                    (deleteAction)="onDeleteNoteValidation($event)"></mos-ui-note>
+            </ng-container>
+        </div>
+    </section>
+</mos-ui-animated-container>
+<mos-ui-modal #myModal [titleText]="'¡Warning!'" (emitAcceptButton)="onDeleteNote()">
+    <div modalContent>
+        <p>Are you sure that you want delete this note?</p>
+    </div>
+</mos-ui-modal>

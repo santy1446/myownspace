@@ -1,0 +1,12 @@
+<mos-ui-header *ngIf="areHeaderAndFooterVisible" [links]="links" (emitElementSelected)="clickHeaderElementSelected($event)">
+    <div logo>
+        <mos-logo></mos-logo>
+    </div>
+</mos-ui-header>
+
+<router-outlet></router-outlet>
+
+<mos-ui-footer *ngIf="areHeaderAndFooterVisible" [generalLinks]="generalLinks" [contactInfo]="iconsInfo" 
+(emitLinkSelected) = "getLinkSelected($event)"
+(emitIconSelected) = "getIconSelected($event)">
+</mos-ui-footer>

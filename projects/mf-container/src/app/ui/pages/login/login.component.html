@@ -1,0 +1,18 @@
+<mos-ui-loader #myLoader></mos-ui-loader>
+<mos-ui-animated-container>
+    <div content>
+        <mos-ui-toast #myToast></mos-ui-toast>
+        <div class="mos-container-card">
+            <mos-logo></mos-logo>
+        </div>
+        <mos-ui-login (emitRegisterData)="signUpCognito($event)" (emitLoginData)="signInCognito($event)">
+
+        </mos-ui-login>
+    </div>
+</mos-ui-animated-container>
+
+<mos-ui-modal #verificationCodeModal (emitAcceptButton)="confirmClick()">
+    <div modalContent>
+        <input mosUiInput type="text" placeholder="Verification code" [(ngModel)]="verificationCode">
+    </div>
+</mos-ui-modal>
