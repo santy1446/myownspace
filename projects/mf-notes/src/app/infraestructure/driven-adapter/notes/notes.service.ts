@@ -16,7 +16,7 @@ export class NotesService extends NotesGateway {
     return this._http.post<any>(environment.notesEndpoint, user);
   }
   updateNote(note: NoteService): Observable<any> {
-    const params = {title: note.title, body: note.note_body}
+    const params = {title: note.title, note_body: note.note_body}
     return this._http.put(`${environment.notesEndpoint}/${note.id}`, params);
   }
   getUserNotes(): Observable<NoteService[]> {

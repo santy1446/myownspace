@@ -7,14 +7,21 @@ import { NotesComponent } from './notes/notes.component';
 import { 
   UiAnimatedContainerModule,
   UiLoaderModule,
-  UiNoteModule 
+  UiNoteModule,
+  UiButtonModule,
+  UiToastModule,
+  UiModalModule,
+  UiInputModule
 } from 'mos-design-system';
 import { HttpClientModule } from '@angular/common/http';
 import { DEFAULT_CONFIGURATION, DEFAULT_PROVIDERS, FULL_PROVIDERS } from './../../app.configuration';
+import { SearchPipe } from '../../infraestructure/pipes/search/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    NotesComponent
+    NotesComponent,
+    SearchPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +29,12 @@ import { DEFAULT_CONFIGURATION, DEFAULT_PROVIDERS, FULL_PROVIDERS } from './../.
     UiAnimatedContainerModule,
     UiNoteModule,
     UiLoaderModule,
-    HttpClientModule
+    UiButtonModule,
+    UiToastModule,
+    HttpClientModule,
+    UiModalModule,
+    UiInputModule,
+    FormsModule
   ],
   providers: [...FULL_PROVIDERS]
 })
