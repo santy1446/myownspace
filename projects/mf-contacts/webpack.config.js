@@ -2,15 +2,14 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 
 module.exports = withModuleFederationPlugin({
 
-  remotes: {
-    "mf-notes": "http://localhost:4201/remoteEntry.js",    
-    "mf-contacts": "http://localhost:4202/remoteEntry.js",    
+  name: 'mf-contacts',
+
+  exposes: {
+    './PagesModule': './projects/mf-contacts/src/app/ui/pages/pages.module.ts',
   },
 
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },
-
-  sharedMappings: ['commons-lib'],
-
+  sharedMappings: ['commons-lib']
 });

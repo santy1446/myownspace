@@ -29,6 +29,12 @@ const routes: Routes = [
     loadChildren: () => 
     import('mf-notes/PagesModule').then((m) => m.PagesModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'contacts',
+    loadChildren: () => 
+    import('mf-contacts/PagesModule').then((m) => m.PagesModule),
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -38,7 +38,7 @@ export class CognitoUserService extends CognitoUserGateway {
   }
   signIn(user: CognitoUser): Observable<any> {
     const OBSERVABLE = from(Auth.signIn(
-      user.user!, user.password
+      user.email, user.password
     ));
     return OBSERVABLE;
   }
