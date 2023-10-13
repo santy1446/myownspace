@@ -1,30 +1,25 @@
 @import "../../../../assets/variables";
+$mos-max-width: 1300px;
 
-h2 {
-    text-align: center;
-    color: $mos-primary-color;
-}
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-.mos-container-card {
+.container {
+    max-width: $mos-max-width;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
-    max-width: 1000px;
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    input {
-        width: 30%;
+    h2 {
+        margin-left: 15px;
     }
-    button{
-        margin: auto;
-        margin-right: 0;
+    .search-bar {
+        margin: 15px 0px 15px 15px;
+        input {
+            width: 260px;
+            margin-right: 20px;
+        }
     }
 }
 

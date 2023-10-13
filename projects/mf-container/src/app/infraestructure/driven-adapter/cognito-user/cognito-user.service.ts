@@ -1,10 +1,9 @@
 import { environment } from './../../../../environments/environments';
 import { Injectable } from '@angular/core';
 import { CognitoUserGateway } from '../../../domain/models/cognito-user/gateway/cognito-user.gateway';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { CognitoUser } from '../../../domain/models/cognito-user/cognito-user.model';
 import { Amplify, Auth } from 'aws-amplify';
-import { from } from 'rxjs';
 
 
 @Injectable({

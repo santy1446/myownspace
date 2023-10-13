@@ -1,9 +1,9 @@
 <mos-ui-toast #myToast></mos-ui-toast>
 <mos-ui-loader #myLoader></mos-ui-loader>
 <mos-ui-animated-container>
-    <section content>
+    <section class="container" content>
         <h2>My notes</h2>
-        <div class="mos-container-card">
+        <div class="search-bar">
             <input mosUiInput type="text" placeholder="Search" [(ngModel)]="searchInput">
             <button mosUiButton class="mos-button-primary" (click)="isCreating = true">Create</button>
 
