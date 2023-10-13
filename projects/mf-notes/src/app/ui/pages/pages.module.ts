@@ -17,11 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DEFAULT_CONFIGURATION, DEFAULT_PROVIDERS, FULL_PROVIDERS } from './../../app.configuration';
 import { SearchPipe } from '../../infraestructure/pipes/search/search.pipe';
 import { FormsModule } from '@angular/forms';
+import { GeneralSearchPipe } from 'commons-lib';
 
 @NgModule({
   declarations: [
     NotesComponent,
-    SearchPipe
+    SearchPipe,
+    GeneralSearchPipe
   ],
   imports: [
     CommonModule,

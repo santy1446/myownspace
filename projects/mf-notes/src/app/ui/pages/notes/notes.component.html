@@ -11,7 +11,7 @@
         <div class="cards-container">
             <mos-ui-note *ngIf="isCreating" [isEditing]="true" (saveAction)="onCreateNote($event)"
                 (deleteAction)="isCreating = false"></mos-ui-note>
-            <ng-container *ngFor="let note of notesList | search: searchInput">
+            <ng-container *ngFor="let note of notesList | generalSearch: searchInput">
                 <mos-ui-note [noteData]="note" (saveAction)="onUpdateNote($event)"
                     (deleteAction)="onDeleteNoteValidation($event)"></mos-ui-note>
             </ng-container>

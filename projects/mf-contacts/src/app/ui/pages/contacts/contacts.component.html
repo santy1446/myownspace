@@ -1,1 +1,49 @@
-<p>contacts works wo!</p>
+<mos-ui-toast #myToast></mos-ui-toast>
+<mos-ui-loader #myLoader></mos-ui-loader>
+<mos-ui-animated-container>
+    <section class="container" content>
+        <h2>My contacts</h2>
+        <div class="search-bar">
+            <input mosUiInput type="text" placeholder="Search" [(ngModel)]="searchInput">
+            <button mosUiButton class="mos-button-primary" (click)="openCreateModal()">Create</button>
+        </div>
+        
+        <div class="contacts-container">
+            <ng-container *ngFor="let contact of contactsList | generalSearch: searchInput">
+                <mos-ui-contact-card [contactInfo]="contact" (emitAction)="contactAction($event)"></mos-ui-contact-card>
+            </ng-container>
+        </div>
+
+    </section>
+</mos-ui-animated-container>
+<mos-ui-modal #myModal [titleText]="modalFormTitle" [size]="'sm'" (emitAcceptButton)="confirmClickModal()">
+    <div modalContent>
+        <div>
+            <mos-ui-profile-image-upload [defaultImage]="formDefaultImage" (emitImageData)="getImage($event)"></mos-ui-profile-image-upload>
+        </div>
+        <form [formGroup]="contactForm">
+            <div class="form-field">
+                <label for="name">Name</label>
+                <input mosUiInput id="name" type="text" formControlName="contactName">
+            </div>
+            <div class="form-field">
+                <label for="job">Job</label>
+                <input mosUiInput id="job" type="text" placeholder="Software developer" formControlName="job">
+            </div>
+            <div class="form-field">
+                <label for="phone">Phone</label>
+                <input mosUiInput id="phone" type="tel" placeholder="+57300000000" formControlName="phone">
+            </div>
+            <div class="form-field">
+                <label for="email">Email</label>
+                <input mosUiInput id="email" type="email" placeholder="example@email.com" formControlName="email">
+            </div>
+        </form>
+    </div>
+</mos-ui-modal>
+
+<mos-ui-modal #myModalDelete [titleText]="'!Warning¡'" [size]="'spm'" (emitAcceptButton)="deleteContact()">
+    <div modalContent>
+        <p>Are you sure that you want delete this contact?</p>
+    </div>
+</mos-ui-modal>

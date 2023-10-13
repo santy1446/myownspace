@@ -28,7 +28,12 @@
 						"inlineStyleLanguage": "scss",
 						"assets": [
 							"projects/mf-container/src/favicon.ico",
-							"projects/mf-container/src/assets"
+							"projects/mf-container/src/assets",
+							{
+								"glob": "**/*",
+								"input": "projects/mf-contacts/src/assets",
+								"output": "assets"
+							}
 						],
 						"styles": [
 							"projects/mf-container/src/styles.scss"
