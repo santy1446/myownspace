@@ -46,16 +46,16 @@ export class CognitoUserService extends CognitoUserGateway {
     return OBSERVABLE;
   }
 
-  forgotPassword(user: CognitoUser): Observable<any> {
-    const OBSERVABLE = from(Auth.forgotPassword(user.email));
+  forgotPassword(email: string): Observable<any> {
+    const OBSERVABLE = from(Auth.forgotPassword(email));
     return OBSERVABLE;
   }
 
-  forgotPasswordSubmit(user: CognitoUser): Observable<any> {
+  forgotPasswordSubmit(email: string, code: string, password: string): Observable<any> {
     const OBSERVABLE = from(Auth.forgotPasswordSubmit(
-      user.email,
-      user.code!.toString(),
-      user.password
+      email,
+      code!.toString(),
+      password
     ));
     return OBSERVABLE;
   }

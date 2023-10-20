@@ -87,14 +87,12 @@ export class AppComponent implements OnInit {
   }
 
   constructor(
-    private _forgotPasswordUseCase: ForgotPasswordUseCase,
-    private _forgotPasswordSubmitUseCase: ForgotPasswordSubmitUseCase,
     private _router: Router,
     private _signoutUseCase: SignoutUseCase
   ) {
     _router.events.subscribe((elm) => {
       if (elm instanceof NavigationStart) {
-        this.areHeaderAndFooterVisible = elm.url !== '/login'
+        this.areHeaderAndFooterVisible = elm.url !== '/login' && elm.url !== '/';
       }
     })
 
@@ -134,26 +132,5 @@ export class AppComponent implements OnInit {
     })
   }
 
-  forgotPasswordClicked() {
-    this._forgotPasswordUseCase.forgotPassword(this.user).subscribe({
-      next: (res) => {
-        this.isForgotPassword = true;
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
-
-  newPasswordSubmit() {
-    this._forgotPasswordSubmitUseCase.forgotPasswordSubmit(this.user).subscribe({
-      next: (res) => {
-        alert("Password updated");
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    })
-  }
 }
 
