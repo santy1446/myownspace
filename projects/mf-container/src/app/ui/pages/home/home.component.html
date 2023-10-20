@@ -1,7 +1,13 @@
 <mos-ui-animated-container>
-    <div content>
-        <h1>WELCOME</h1>
-        <button (click)="getUserInfo()">get user info</button>
-        <button (click)="getSessionInfo()">get session info</button>
+    <div class="container" content>
+        <section>
+            <h1>¡Welcome <span>{{userName}}</span>!</h1>
+            <p>You'll be able to better organize yourself and manage your work using the My Own Space app. Keep your contacts in one location and make notes to help you remember what needs to be done!</p>
+        </section>
+        <aside>
+            <figure>
+                <img src="assets/images/welcome-image.jpg" alt="Someone working on the desktop">
+            </figure>
+        </aside> 
     </div>
 </mos-ui-animated-container>
