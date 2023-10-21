@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
       type: "link"
     },
     {
+      name: "About project",
+      route: "about",
+      type: "link"
+    },
+    {
       name: "LogOut",
       route: "/",
       type: "LogOut"
@@ -58,7 +63,7 @@ export class AppComponent implements OnInit {
       categoryLinks: [
         {
           name: "This project",
-          route: "route",
+          route: "about",
           type: "link"
         },
         {

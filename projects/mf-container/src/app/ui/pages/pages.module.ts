@@ -14,13 +14,15 @@ import {
   UiToastModule
 } from 'mos-design-system';
 import { HomeComponent } from './home/home.component';
+import { AboutProjectComponent } from './about-project/about-project.component';
 
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AboutProjectComponent
   ],
   imports: [
     CommonModule,

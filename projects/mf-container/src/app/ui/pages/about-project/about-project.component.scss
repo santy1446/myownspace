@@ -1,0 +1,14 @@
+.container__information--animation {
+    opacity: 0.5;
+    transition: all 0.5s;
+}
+
+.transform_up {transform: translateY(20%);}
+.transform_down {transform: translateY(-20%);}
+.transform_left {transform: translateY(20%);}
+.transform_right {transform: translateY(20%);}
+
+.show {
+    opacity: 1;
+    transform: none;
+}
