@@ -44,7 +44,7 @@ export class AboutProjectComponent {
     {
       position: 1,
       title: "¡<span>Serverless</span> for BackEnd!",
-      text: "For the backend application, the serverless framework for NodeJS was use, using services like DynamoDB, BucketS3, API Gateway, CloudFormation, and Lambda de AWS.",
+      text: "For the backend application, the serverless framework for NodeJS was use, using services like DynamoDB, BucketS3, API Gateway, CloudFormation, and Lambda from AWS.",
       img: IMAGE_BASE_URL + "serverless.png",
       imgDescription: "AWS backend application",
       extraClass: "container__information--animation fade_up"

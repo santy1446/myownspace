@@ -65,11 +65,6 @@ export class AppComponent implements OnInit {
           name: "This project",
           route: "about",
           type: "link"
-        },
-        {
-          name: "Me",
-          route: "route",
-          type: "link"
         }
       ]
     }

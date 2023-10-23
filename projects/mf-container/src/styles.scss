@@ -65,3 +65,9 @@ $mos-max-width: 1300px;
         }
     }
 }
+
+@media only screen and (max-width: 500px) {
+    .container figure img {
+        width: 100%;
+    }
+}
