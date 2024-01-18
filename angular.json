@@ -101,7 +101,8 @@
 					"options": {
 						"polyfills": [
 							"zone.js",
-							"zone.js/testing"
+							"zone.js/testing",
+							"aws-pollyfill-like-file.ts"
 						],
 						"tsConfig": "projects/mf-container/tsconfig.spec.json",
 						"inlineStyleLanguage": "scss",
@@ -111,6 +112,9 @@
 						],
 						"styles": [
 							"projects/mf-container/src/styles.scss"
+						],
+						"codeCoverageExclude": [
+							"projects/mf-container/**/gateways.mock.ts"
 						],
 						"scripts": []
 					}

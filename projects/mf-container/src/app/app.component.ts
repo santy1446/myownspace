@@ -1,6 +1,4 @@
-import { ForgotPasswordSubmitUseCase } from './domain/usecase/cognito-user/forgot-password-submit/forgot-password-submit.usecase';
-import { ForgotPasswordUseCase } from './domain/usecase/cognito-user/forgot-password/forgot-password.usecase';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CognitoUser } from './domain/models/cognito-user/cognito-user.model';
 import { NavigationStart, Router } from '@angular/router';
 import { SignoutUseCase } from './domain/usecase/cognito-user/signout/signout.usecase';
@@ -12,8 +10,7 @@ const GITHUB_ROUTE: string = "https://github.com/santy1446";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'mf-container';
+export class AppComponent {
   user: CognitoUser = {} as any;
   isConfirm: boolean = false;
   isForgotPassword: boolean = false;
@@ -96,9 +93,6 @@ export class AppComponent implements OnInit {
       }
     })
 
-  }
-
-  ngOnInit(): void {
   }
 
   getLinkSelected(event: any) {

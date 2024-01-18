@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "mf-container": "ng s mf-container ",
     "mf-notes": "ng s mf-notes --proxy-config proxy.conf.json",
     "mf-contacts": "ng s mf-contacts --proxy-config proxy.conf.json",

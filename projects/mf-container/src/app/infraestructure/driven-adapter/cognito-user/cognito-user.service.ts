@@ -23,7 +23,7 @@ export class CognitoUserService extends CognitoUserGateway {
       username: user.email,
       password: user.password,
       attributes: {
-        nickname: user.user, // optional
+        nickname: user.user,
       },
     },));
     return OBSERVABLE;
