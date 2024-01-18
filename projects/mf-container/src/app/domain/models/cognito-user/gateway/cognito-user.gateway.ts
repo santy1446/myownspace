@@ -6,6 +6,6 @@ export abstract class CognitoUserGateway {
     abstract confirmSignUp(user : CognitoUser): Observable<any>;
     abstract signIn(user : CognitoUser): Observable<any>;
     abstract signOut(): Observable<any>;
-    abstract forgotPassword(user : CognitoUser): Observable<any>;
-    abstract forgotPasswordSubmit(user : CognitoUser): Observable<any>;
+    abstract forgotPassword(email: string): Observable<any>;
+    abstract forgotPasswordSubmit(email: string, code: string, password: string): Observable<any>;
 }

@@ -1,10 +1,9 @@
 import { environment } from './../../../../environments/environments';
 import { Injectable } from '@angular/core';
 import { CognitoUserGateway } from '../../../domain/models/cognito-user/gateway/cognito-user.gateway';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { CognitoUser } from '../../../domain/models/cognito-user/cognito-user.model';
 import { Amplify, Auth } from 'aws-amplify';
-import { from } from 'rxjs';
 
 
 @Injectable({
@@ -24,7 +23,7 @@ export class CognitoUserService extends CognitoUserGateway {
       username: user.email,
       password: user.password,
       attributes: {
-        nickname: user.user, // optional
+        nickname: user.user,
       },
     },));
     return OBSERVABLE;
@@ -38,7 +37,7 @@ export class CognitoUserService extends CognitoUserGateway {
   }
   signIn(user: CognitoUser): Observable<any> {
     const OBSERVABLE = from(Auth.signIn(
-      user.user!, user.password
+      user.email, user.password
     ));
     return OBSERVABLE;
   }
@@ -47,16 +46,16 @@ export class CognitoUserService extends CognitoUserGateway {
     return OBSERVABLE;
   }
 
-  forgotPassword(user: CognitoUser): Observable<any> {
-    const OBSERVABLE = from(Auth.forgotPassword(user.email));
+  forgotPassword(email: string): Observable<any> {
+    const OBSERVABLE = from(Auth.forgotPassword(email));
     return OBSERVABLE;
   }
 
-  forgotPasswordSubmit(user: CognitoUser): Observable<any> {
+  forgotPasswordSubmit(email: string, code: string, password: string): Observable<any> {
     const OBSERVABLE = from(Auth.forgotPasswordSubmit(
-      user.email,
-      user.code!.toString(),
-      user.password
+      email,
+      code!.toString(),
+      password
     ));
     return OBSERVABLE;
   }

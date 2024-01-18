@@ -4,6 +4,7 @@ import { LoginComponent } from './ui/pages/login/login.component';
 import { HomeComponent } from './ui/pages/home/home.component';
 import { AuthGuard } from './infraestructure/guards/auth/auth.guard';
 import { AlreadySigninGuard } from './infraestructure/guards/already-signin/already-signin.guard';
+import { AboutProjectComponent } from './ui/pages/about-project/about-project.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'about',
+    component: AboutProjectComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -28,6 +34,12 @@ const routes: Routes = [
     path: 'notes',
     loadChildren: () => 
     import('mf-notes/PagesModule').then((m) => m.PagesModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'contacts',
+    loadChildren: () => 
+    import('mf-contacts/PagesModule').then((m) => m.PagesModule),
     canActivate: [AuthGuard]
   }
 ];

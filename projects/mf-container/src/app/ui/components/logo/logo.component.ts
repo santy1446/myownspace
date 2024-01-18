@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mos-logo',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class LogoComponent {
 
+  constructor(
+    private _router: Router,
+  ) {}
+
+  goHome(): void {
+    this._router.navigate(['home']);
+  }
 }

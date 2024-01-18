@@ -1,0 +1,32 @@
+<mos-ui-animated-container>
+    <div class="container" content>
+        <ng-container *ngFor="let item of informationArray">
+            <div class="container__information {{item.extraClass}}" *ngIf="item.position === 1">
+                <section>
+                    <h1 [innerHtml]="item.title"></h1>
+                    <p>{{item.text}}</p>
+                </section>
+                <aside>
+                    <figure>
+                        <img [src]="item.img" [alt]="item.imgDescription" loading="lazy">
+                    </figure>
+                </aside> 
+            </div>
+    
+            <div class="container__information {{item.extraClass}}" *ngIf="item.position === 2">
+                <aside>
+                    <figure>
+                        <img [src]="item.img" [alt]="item.imgDescription" loading="lazy">
+                    </figure>
+                </aside> 
+                <section>
+                    <h1 [innerHtml]="item.title"></h1>
+                    <p>{{item.text}}</p>
+                </section>
+                
+            </div>
+
+        </ng-container>
+        
+    </div>
+</mos-ui-animated-container>

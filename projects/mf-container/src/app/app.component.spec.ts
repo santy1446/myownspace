@@ -1,8 +1,14 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { CognitoUserGateway } from './domain/models/cognito-user/gateway/cognito-user.gateway';
+import { MockCognitoUserGateway } from './mocks/gateways.mock';
+import { of } from 'rxjs';
 
 describe('AppComponent', () => {
+  let app: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -11,25 +17,50 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        {
+          provide: CognitoUserGateway,
+          useClass: MockCognitoUserGateway
+        }
+      ]
     }).compileComponents();
   });
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    app = fixture.componentInstance;
+  })
+
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'mf-container'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('mf-container');
+  it('should navigate when getLinkSelected is called', () => {
+    const SPY_NAVIGATE = spyOn(app['_router'], 'navigate');
+    const MOCK_PARAMETER = {type: "link", route: "route"};
+    app.getLinkSelected(MOCK_PARAMETER);
+    expect(SPY_NAVIGATE).toHaveBeenCalled();
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('mf-container app is running!');
+  it('should navigate when clickHeaderElementSelected is called', () => {
+    const SPY_NAVIGATE = spyOn(app['_router'], 'navigate');
+    const MOCK_PARAMETER = {type: "link", route: "route"};
+    app.clickHeaderElementSelected(MOCK_PARAMETER);
+    expect(SPY_NAVIGATE).toHaveBeenCalled();
+  });
+
+  it('should signOut when clickHeaderElementSelected is called', () => {
+    const SPY_NAVIGATE = spyOn(app, 'signOut');
+    const MOCK_PARAMETER = {type: "action", route: "route"};
+    app.clickHeaderElementSelected(MOCK_PARAMETER);
+    expect(SPY_NAVIGATE).toHaveBeenCalled();
+  });
+
+  it('should navigate when signOut is called', () => {
+    const SPY_NAVIGATE = spyOn(app["_router"], 'navigate');
+    const SPY_SERVICE = spyOn(app["_signoutUseCase"], 'signOut').and.returnValue(of(true));
+    app.signOut();
+    expect(SPY_NAVIGATE).toHaveBeenCalled();
+    expect(SPY_SERVICE).toHaveBeenCalled();
   });
 });

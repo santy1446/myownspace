@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable, map } from 'rxjs';
 import { CognitoUserCommonService } from 'commons-lib';
 
@@ -12,9 +12,7 @@ export class AlreadySigninGuard implements CanActivate {
     private _cognitoUserCommonService: CognitoUserCommonService
   ) { }
   
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this._cognitoUserCommonService.getUser().pipe(map((res) => {
         if(!res){
           return true

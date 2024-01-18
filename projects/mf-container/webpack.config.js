@@ -4,6 +4,7 @@ module.exports = withModuleFederationPlugin({
 
   remotes: {
     "mf-notes": "http://localhost:4201/remoteEntry.js",    
+    "mf-contacts": "http://localhost:4202/remoteEntry.js",    
   },
 
   shared: {

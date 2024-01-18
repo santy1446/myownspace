@@ -5,10 +5,15 @@
     "outDir": "../../out-tsc/spec",
     "types": [
       "jasmine"
-    ]
+    ],
   },
+  
+  "files": [
+    "../../aws-pollyfill-like-file.ts"
+  ],
+  
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
   ]
 }

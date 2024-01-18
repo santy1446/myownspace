@@ -64,4 +64,5 @@ export interface Attributes {
     sub:            string;
     email_verified: boolean;
     email:          string;
+    nickname:       string;
 }

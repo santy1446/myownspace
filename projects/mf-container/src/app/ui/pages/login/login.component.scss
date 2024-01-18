@@ -12,6 +12,14 @@
     background-color: $mos-primary-color;
     text-align: center;
 }
+.mos-alert{
+    width: 60%;
+    padding: 7px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    color: $mos-error-red-color;
+}
 
 @media only screen and (max-width: 444px) {
 	.mos-container-card {
