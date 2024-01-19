@@ -9,6 +9,7 @@ import { CognitoUserService } from './infraestructure/driven-adapter/cognito-use
 import { PagesModule } from './ui/pages/pages.module';
 import { UiAnimatedContainerModule, UiFooterModule, UiHeaderModule } from 'mos-design-system';
 import { ComponentsModule } from './ui/components/components.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ComponentsModule } from './ui/components/components.module';
     UiAnimatedContainerModule,
   ],
   providers: [
-    { provide: CognitoUserGateway, useClass: CognitoUserService }
+    { provide: CognitoUserGateway, useClass: CognitoUserService },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })

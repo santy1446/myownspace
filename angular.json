@@ -202,7 +202,13 @@
 								}
 							],
 							"outputHashing": "all",
-							"extraWebpackConfig": "projects/mf-notes/webpack.prod.config.js"
+							"extraWebpackConfig": "projects/mf-notes/webpack.prod.config.js",
+							"fileReplacements": [
+								{
+								  "replace": "projects/mf-notes/src/environments/environments.ts",
+								  "with": "projects/mf-notes/src/environments/environments.prod.ts"
+								}
+							]
 						},
 						"development": {
 							"buildOptimizer": false,
@@ -310,7 +316,13 @@
 								}
 							],
 							"outputHashing": "all",
-							"extraWebpackConfig": "projects/mf-contacts/webpack.prod.config.js"
+							"extraWebpackConfig": "projects/mf-contacts/webpack.prod.config.js",
+							"fileReplacements": [
+								{
+								  "replace": "projects/mf-contacts/src/environments/environments.ts",
+								  "with": "projects/mf-contacts/src/environments/environments.prod.ts"
+								}
+							]
 						},
 						"development": {
 							"buildOptimizer": false,
